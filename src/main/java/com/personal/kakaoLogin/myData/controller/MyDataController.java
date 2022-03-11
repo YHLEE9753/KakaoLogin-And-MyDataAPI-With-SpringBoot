@@ -1,6 +1,8 @@
 package com.personal.kakaoLogin.myData.controller;
 
 import com.personal.kakaoLogin.myData.service.MyDataService;
+import com.personal.kakaoLogin.oAuthLogin.service.KakaoAPIService;
+import com.personal.kakaoLogin.security.SecurityInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,8 @@ import java.util.HashMap;
 public class MyDataController {
     @Autowired
     private MyDataService dataService;
+    @Autowired
+    private SecurityInfo securityInfo;
 
     @RequestMapping("/mydata")
     public String home(){
@@ -24,10 +28,8 @@ public class MyDataController {
 
     @RequestMapping("/connection")
     public String connect(HttpSession session) throws Exception {
-        System.out.println("!!!!");
-        String registrationNumber = "9711071152819";
+        String registrationNumber = securityInfo.getTestJumin();
         String encode = dataService.crypto(registrationNumber);
-        System.out.println("!!!!");
         System.out.println(encode);
 
         HashMap<String, Object> responseInfo = dataService.connectToMyData(encode, String.valueOf(session.getAttribute("UserId")), String.valueOf(session.getAttribute("access_Token")));
@@ -36,12 +38,6 @@ public class MyDataController {
         session.setAttribute("callBackType", String.valueOf(responseInfo.get("callBackType")));
         session.setAttribute("callBackData", String.valueOf(responseInfo.get("callBackData")));
         session.setAttribute("timeout", String.valueOf(responseInfo.get("timeout")));
-
-//        session.setAttribute("errCode", "1234");
-//        if(session.getAttribute("errCode")!=null){
-//            System.out.println("connect success");
-//            return "redirect:/connection/kakao";
-//        }
 
 
         log.info("Connect");
