@@ -1,0 +1,25 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Kakao Login Test</h1>
+
+<span th:if="${session.userId==null}">
+		<a href="https://kauth.kakao.com/oauth/authorize?client_id=17cc05d79276e350489cd34984a43341&redirect_uri=http://localhost:8080/login&response_type=code">
+			<img src = "img/kakao_login_medium_narrow.png">
+		</a>
+	</span>
+<span th:if="${session.userId!=null}">
+		<h1>로그인을 성공하였습니다.</h1>
+		<a href="/mydata">DataAPI 파트너 연동</a>
+		<input type="button" value="로그아웃" onclick="location.href='/logout'">
+	</span>
+</body>
+</html>

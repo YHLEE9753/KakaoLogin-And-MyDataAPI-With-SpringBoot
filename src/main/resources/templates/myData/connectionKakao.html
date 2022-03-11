@@ -1,0 +1,18 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Connection to Kakao</h1>
+<h2>카카오톡을 여시고 간편지갑으로 온 카카오톡 인증하기 버튼을 누르세요</h2>
+<span th:if="${session.userId!=null}">
+		<input type="button" value="인증완료 후 버튼을 누르세요" onclick="location.href='/connection/data'">
+	</span>
+</body>
+</html>
