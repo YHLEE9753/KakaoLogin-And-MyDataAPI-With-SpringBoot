@@ -48,8 +48,8 @@ public class MyDataService {
             jsonBody.addProperty( "JUMIN",encryptJumin);
             jsonBody.addProperty( "DETAILPARSE","3");
             jsonBody.addProperty( "CHILDPARSE","1");
-            jsonBody.addProperty( "USERNAME","이용훈");
-            jsonBody.addProperty( "HPNUMBER","01093967385");
+            jsonBody.addProperty( "USERNAME",securityInfo.getTestName());
+            jsonBody.addProperty( "HPNUMBER",securityInfo.getTestPhone());
             jsonBody.addProperty( "TELECOMGUBUN","3");
 
             bw.write(jsonBody.toString());
